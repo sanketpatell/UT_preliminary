@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/list_row_selector"
+    android:padding="8dp" >
+
+    <!-- Thumbnail Image -->
+    <com.android.volley.toolbox.NetworkImageView
+        android:id="@+id/thumbnail"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginRight="8dp" />
+
+    <!-- Employee Title -->
+    <TextView
+        android:id="@+id/emp_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/thumbnail"
+        android:layout_toRightOf="@+id/thumbnail"
+        android:textSize="@dimen/name"
+        android:textStyle="bold" />
+
+    <!-- Email -->
+    <TextView
+        android:id="@+id/emp_email"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/emp_name"
+        android:layout_marginTop="1dip"
+        android:layout_toRightOf="@+id/thumbnail"
+        android:textSize="@dimen/email" />
+
+    <!-- Post -->
+    <TextView
+        android:id="@+id/emp_post"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/emp_email"
+        android:layout_marginTop="5dp"
+        android:layout_toRightOf="@+id/thumbnail"
+        android:textColor="@color/genre"
+        android:textSize="@dimen/post" />
+
+    <!-- pressent Avsent status -->
+    <TextView
+        android:id="@+id/emp_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:textColor="@color/present"
+        android:textSize="@dimen/status" />
+
+</RelativeLayout>
+<!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="?android:attr/listPreferredItemHeight"
+    android:padding="6dip" >
+
+    <ImageView
+        android:id="@+id/user_pic"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="6dip"
+        android:contentDescription="TODO"
+        android:src="@drawable/ic_menu_slideshow" />
+
+    <TextView
+        android:id="@+id/today_status"
+        android:layout_width="fill_parent"
+        android:layout_height="26dip"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@id/user_pic"
+        android:ellipsize="marquee"
+        android:singleLine="true"
+        android:text="Employe today status"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/employe_name"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/today_status"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignWithParentIfMissing="true"
+        android:layout_toRightOf="@id/user_pic"
+        android:gravity="center_vertical"
+        android:text="Employe Name"
+        android:textSize="16sp" />
+
+</RelativeLayout>-->
+<!--
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+
+    android:orientation="vertical"
+    android:padding="5dip" >
+    &lt;!&ndash; ListRow Left side Thumbnail image &ndash;&gt;
+    <LinearLayout
+        android:id="@+id/thumbnail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginRight="5dip"
+        android:padding="3dip" >
+        <ImageView
+            android:id="@+id/list_image"
+            android:contentDescription="@string/app_name"
+            android:layout_width="60dip"
+            android:layout_height="60dip"
+            android:src="@drawable/ic_menu_gallery" />
+    </LinearLayout>
+
+    &lt;!&ndash; City&ndash;&gt;
+    <TextView
+        android:id="@+id/tv_employname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginLeft="75dip"
+        android:layout_centerVertical="true"
+        android:paddingBottom ="10dip"
+        android:text="Employee Name"
+        android:textColor="#040404"
+        android:textSize="25dip"
+        android:textStyle="bold"
+        android:typeface="sans" />
+    &lt;!&ndash; Weather Information&ndash;&gt;
+    <TextView
+        android:id="@+id/tv_todaystatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_employname"
+        android:layout_alignLeft="@+id/tv_employname"
+        android:paddingTop="5dip"
+        android:layout_centerHorizontal="true"
+        android:text="Todat Status"
+        android:textColor="#343434"
+        android:textSize="15dip" />
+
+    &lt;!&ndash; Weather Information&ndash;&gt;
+    <TextView
+        android:id="@+id/tv_p_a"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_employname"
+
+        android:paddingTop="5dip"
+        android:layout_centerHorizontal="true"
+        android:text="P/A"
+        android:textColor="#343434"
+        android:textSize="15dip" />
+</RelativeLayout>  -->
