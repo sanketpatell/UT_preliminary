@@ -25,9 +25,9 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import com.citynote.sanky.ut_preliminary.Fragement.Attandance_management;
+import com.citynote.sanky.ut_preliminary.Fragement.GadgetsFragment;
 import com.citynote.sanky.ut_preliminary.R;
 import com.citynote.sanky.ut_preliminary.Fragement.HomeFragment;
-import com.citynote.sanky.ut_preliminary.Fragement.MoviesFragment;
 import com.citynote.sanky.ut_preliminary.Fragement.NotificationsFragment;
 import com.citynote.sanky.ut_preliminary.Fragement.PhotosFragment;
 import com.citynote.sanky.ut_preliminary.Fragement.SettingsFragment;
@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
     // tags used to attach the fragments
     private static final String TAG_HOME = "home";
     private static final String TAG_PHOTOS = "photos";
-    private static final String TAG_MOVIES = "movies";
+    private static final String TAG_GADGETS = "gadgets";
     private static final String TAG_NOTIFICATIONS = "notifications";
     private static final String TAG_SETTINGS = "settings";
     private static final String TAG_ATTANDANCE = "Attandance";
@@ -205,9 +205,9 @@ public class MainActivity extends AppCompatActivity {
                 PhotosFragment photosFragment = new PhotosFragment();
                 return photosFragment;
             case 2:
-                // movies fragment
-                MoviesFragment moviesFragment = new MoviesFragment();
-                return moviesFragment;
+                // gadgets fragment
+                GadgetsFragment gadgetsFragment = new GadgetsFragment();
+                return gadgetsFragment;
             case 3:
                 // notifications fragment
                 NotificationsFragment notificationsFragment = new NotificationsFragment();
@@ -253,9 +253,9 @@ public class MainActivity extends AppCompatActivity {
                         navItemIndex = 1;
                         CURRENT_TAG = TAG_PHOTOS;
                         break;
-                    case R.id.nav_movies:
+                    case R.id.nav_gadgets:
                         navItemIndex = 2;
-                        CURRENT_TAG = TAG_MOVIES;
+                        CURRENT_TAG = TAG_GADGETS;
                         break;
                     case R.id.nav_notifications:
                         navItemIndex = 3;

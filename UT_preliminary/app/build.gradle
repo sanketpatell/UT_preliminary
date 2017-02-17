@@ -27,4 +27,7 @@ dependencies {
     compile 'com.android.support:support-v4:23.4.0'
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'com.android.volley:volley:1.0.0'
+    compile files('libs/mail.jar')
+    compile files('libs/additionnal.jar')
+    compile files('libs/activation.jar')
 }

@@ -1,43 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Google Material Design Color Palette for Android http://www.google.com/design/spec/style/color.html#color-ui-color-palette 
+    Spreadsheet used to create this reosurce - http://bit.ly/mdcolor_spreadsheet 
+    Link to this colors.xml resource file - http://bit.ly/mdcolorsxml
+    
+    Harshad Kale 
+    https://github.com/kalehv
+    harshad.kale@gmail.com
+-->
+
+
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
-    <color name="blue">#00abea</color>
-    <color name="error_snackbar">#B71C1C</color>
-    <color name="ColorPrimary">#1565C0</color> <!-- blue_800 -->
-    <color name="ColorPrimaryDark">#0D47A1</color> <!-- blue_900 -->
-
-    <color name="background_card">#FEFEFE</color>
-    <color name="background_card_grey">#F5F5F5</color>
-
-    <color name="block">#1b1b1b</color>
-    <!-- Swipe Colors -->
-    <!--<color name="primaryColor">#00000000</color>
-    <color name="primaryColorDark">#4b5c93</color>
-    <color name="colorTextPrimary">#fff</color>
-    <color name="colorTextSecondary">#fff</color>-->
-    <!-- END: Swipe Colors -->
-
-
-    <color name="app_primary">#1565C0</color> <!-- blue_800 -->
-    <color name="app_primary_dark">#0D47A1</color> <!-- blue_900 -->
-
-    <color name="tabsScrollColor">#8a140e</color>
-
-    <color name="white_pressed">#f1f1f1</color>
-
-    <!-- Colors for the app -->
-    <color name="primary">#03A9F4</color>
-    <color name="primary_dark">#0288D1</color>
-    <color name="primary_light">#B3E5FC</color>
-    <color name="accent">#448AFF</color>
-    <color name="primary_text">#212121</color>
-    <color name="secondary_text">#727272</color>
-    <color name="hint_text">#78909C</color>
-    <color name="icons">#000000</color>
-    <color name="divider">#B6B6B6</color>
-
 
     <color name="red_50">#FFEBEE</color>
     <color name="red_100">#FFCDD2</color>
@@ -315,40 +289,9 @@
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
 
-//Login and Signup Activity
-    <color name="bg_login">#26ae90</color>
-    <color name="bg_register">#2e3237</color>
-    <color name="bg_main">#428bca</color>
-
-    <color name="input_login">#222222</color>
-    <color name="input_login_hint">#999999</color>
-    <color name="input_register">#888888</color>
-    <color name="input_register_bg">#3b4148</color>
-    <color name="input_register_hint">#5e6266</color>
-    <color name="btn_login">#26ae90</color>
-    <color name="btn_login_bg">#eceef1</color>
-    <color name="lbl_name">#333333</color>
-    <color name="btn_logut_bg">#ff6861</color>
-
-
-
-
-    //extra
-    <color name="feed_bg">#d3d6db</color>
-    <color name="feed_item_bg">#ffffff</color>
-    <color name="feed_item_border">#c2c3c8</color>
-    <color name="link">#0a80d1</color>
-    <color name="timestamp">#a0a3a7</color>
-
-
-
-    //Test
-    <color name="genre">#666666</color>
-    <color name="present">#26ae90</color>
-    <color name="list_divider">#d9d9d9</color>
-    <color name="list_row_start_color">#ffffff</color>
-    <color name="list_row_end_color">#ffffff</color>
-    <color name="list_row_hover_start_color">#ebeef0</color>
-    <color name="list_row_hover_end_color">#ebeef0</color>
+    <!-- Colors for the app -->
+    <color name="primary">@color/indigo_500</color>
+    <color name="primary_dark">@color/indigo_700</color>
+    <color name="accent">@color/pink_A200</color>
 
 </resources>
