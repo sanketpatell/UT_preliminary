@@ -1,9 +1,7 @@
-package com.citynote.sanky.ut_preliminary.Test;
+package com.citynote.sanky.ut_preliminary.Attandance_model;
 
 
 import com.citynote.sanky.ut_preliminary.R;
-import com.citynote.sanky.ut_preliminary.Test.AppController;
-import com.citynote.sanky.ut_preliminary.Test.Employee;
 
 import java.util.List;
 
@@ -12,8 +10,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 

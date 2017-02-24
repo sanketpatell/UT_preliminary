@@ -1,5 +1,48 @@
 package com.citynote.sanky.ut_preliminary.Splash;
 
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+
+import com.citynote.sanky.ut_preliminary.Activity.MainActivity;
+import com.citynote.sanky.ut_preliminary.R;
+
+public class SplashScreen extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_splash_screen);
+        Thread thread=new Thread()
+        {
+            public  void run()
+            {
+                try {
+                    sleep(5000);
+                }
+                catch (InterruptedException e)
+                {
+                    e.printStackTrace();
+                }
+                finally {
+
+                    Intent intent=new Intent(SplashScreen.this,MainActivity.class);
+                    startActivity(intent);
+                }
+
+            }
+        };
+        thread.start();
+    }
+    @Override
+    protected void onPause()
+    {
+        super.onPause();
+        finish();
+    }
+}
+/*
 import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -22,7 +65,9 @@ public class SplashScreen extends Activity {
 
 // METHOD 1
 
-        /****** Create Thread that will sleep for 5 seconds *************/
+        */
+/****** Create Thread that will sleep for 5 seconds *************//*
+
         Thread background = new Thread() {
             public void run() {
 
@@ -48,7 +93,8 @@ public class SplashScreen extends Activity {
 
 //METHOD 2
 
-        /*
+        */
+/*
         new Handler().postDelayed(new Runnable() {
 
             // Using handler with postDelayed called runnable run method
@@ -62,7 +108,8 @@ public class SplashScreen extends Activity {
                 finish();
             }
         }, 5*1000); // wait for 5 seconds
-        */
+        *//*
+
     }
 
     @Override
@@ -71,4 +118,4 @@ public class SplashScreen extends Activity {
         super.onDestroy();
 
     }
-}
+}*/

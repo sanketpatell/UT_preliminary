@@ -24,12 +24,11 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
-import com.citynote.sanky.ut_preliminary.Fragement.Attandance_management;
 import com.citynote.sanky.ut_preliminary.Fragement.GadgetsFragment;
-import com.citynote.sanky.ut_preliminary.R;
-import com.citynote.sanky.ut_preliminary.Fragement.HomeFragment;
-import com.citynote.sanky.ut_preliminary.Fragement.NotificationsFragment;
 import com.citynote.sanky.ut_preliminary.Fragement.PhotosFragment;
+import com.citynote.sanky.ut_preliminary.R;
+import com.citynote.sanky.ut_preliminary.Fragement.AttandanceManagementFragment;
+import com.citynote.sanky.ut_preliminary.Fragement.NotificationsFragment;
 import com.citynote.sanky.ut_preliminary.Fragement.SettingsFragment;
 import com.citynote.sanky.ut_preliminary.CircleTransform;
 
@@ -52,19 +51,19 @@ public class MainActivity extends AppCompatActivity {
     public static int navItemIndex = 0;
 
     // tags used to attach the fragments
-    private static final String TAG_HOME = "home";
+    private static final String TAG_ATTANDANCE = "Attandance";
     private static final String TAG_PHOTOS = "photos";
     private static final String TAG_GADGETS = "gadgets";
     private static final String TAG_NOTIFICATIONS = "notifications";
     private static final String TAG_SETTINGS = "settings";
-    private static final String TAG_ATTANDANCE = "Attandance";
-    public static String CURRENT_TAG = TAG_HOME;
+
+    public static String CURRENT_TAG = TAG_ATTANDANCE;
 
     // toolbar titles respected to selected nav menu item
     private String[] activityTitles;
 
-    // flag to load home fragment when user presses back key
-    private boolean shouldLoadHomeFragOnBackPress = true;
+    // flag to load Attandance fragment when user presses back key
+    private boolean shouldLoadAttandanceFragOnBackPress = true;
     private Handler mHandler;
 
 
@@ -108,8 +107,8 @@ public class MainActivity extends AppCompatActivity {
 
         if (savedInstanceState == null) {
             navItemIndex = 0;
-            CURRENT_TAG = TAG_HOME;
-            loadHomeFragment();
+            CURRENT_TAG = TAG_ATTANDANCE;
+            loadAttandanceFragment();
         }
     }
 
@@ -145,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
      * Returns respected fragment that user
      * selected from navigation menu
      */
-    private void loadHomeFragment() {
+    private void loadAttandanceFragment() {
         // selecting appropriate nav menu item
         selectNavMenu();
 
@@ -170,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 // update the main content by replacing fragments
-                Fragment fragment = getHomeFragment();
+                Fragment fragment = getAttandanceFragment();
                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.setCustomAnimations(android.R.anim.fade_in,
                         android.R.anim.fade_out);
@@ -194,12 +193,12 @@ public class MainActivity extends AppCompatActivity {
         invalidateOptionsMenu();
     }
 
-    private Fragment getHomeFragment() {
+    private Fragment getAttandanceFragment() {
         switch (navItemIndex) {
             case 0:
-                // home
-                HomeFragment homeFragment = new HomeFragment();
-                return homeFragment;
+                // Attandance
+                AttandanceManagementFragment AttandanceFragment = new AttandanceManagementFragment();
+                return AttandanceFragment;
             case 1:
                 // photos
                 PhotosFragment photosFragment = new PhotosFragment();
@@ -217,12 +216,12 @@ public class MainActivity extends AppCompatActivity {
                 // settings fragment
                 SettingsFragment settingsFragment = new SettingsFragment();
                 return settingsFragment;
-            case 5:
+           /* case 5:
                 // Attandance_management fragment
                 Attandance_management Attandance_management = new Attandance_management();
-                return Attandance_management;
+                return Attandance_management;*/
             default:
-                return new HomeFragment();
+                return new AttandanceManagementFragment();
         }
     }
 
@@ -245,9 +244,9 @@ public class MainActivity extends AppCompatActivity {
                 //Check to see which item was being clicked and perform appropriate action
                 switch (menuItem.getItemId()) {
                     //Replacing the main content with ContentFragment Which is our Inbox View;
-                    case R.id.nav_home:
+                    case R.id.nav_attandance:
                         navItemIndex = 0;
-                        CURRENT_TAG = TAG_HOME;
+                        CURRENT_TAG = TAG_ATTANDANCE;
                         break;
                     case R.id.nav_photos:
                         navItemIndex = 1;
@@ -265,23 +264,15 @@ public class MainActivity extends AppCompatActivity {
                         navItemIndex = 4;
                         CURRENT_TAG = TAG_SETTINGS;
                         break;
-                    case R.id.nav_Attandance_management:
-                        navItemIndex = 5;
-                        CURRENT_TAG = TAG_ATTANDANCE;
-                        break;
-                    case R.id.nav_test:
-                        // launch new intent instead of loading fragment
-                        startActivity(new Intent(MainActivity.this, Test.class));
-                        drawer.closeDrawers();
-                        return true;
+
                     case R.id.nav_about_us:
                         // launch new intent instead of loading fragment
                         startActivity(new Intent(MainActivity.this, AboutUsActivity.class));
                         drawer.closeDrawers();
                         return true;
-                    case R.id.nav_privacy_policy:
+                    case R.id.nav_leave_request:
                         // launch new intent instead of loading fragment
-                        startActivity(new Intent(MainActivity.this, PrivacyPolicyActivity.class));
+                        startActivity(new Intent(MainActivity.this, LeaveActivity.class));
                         drawer.closeDrawers();
                         return true;
                     default:
@@ -296,7 +287,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 menuItem.setChecked(true);
 
-                loadHomeFragment();
+                loadAttandanceFragment();
 
                 return true;
             }
@@ -332,15 +323,15 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        // This code loads home fragment when back key is pressed
-        // when user is in other fragment than home
-        if (shouldLoadHomeFragOnBackPress) {
+        // This code loads Attandance fragment when back key is pressed
+        // when user is in other fragment than Attandance
+        if (shouldLoadAttandanceFragOnBackPress) {
             // checking if user is on other navigation menu
-            // rather than home
+            // rather than Attandance
             if (navItemIndex != 0) {
                 navItemIndex = 0;
-                CURRENT_TAG = TAG_HOME;
-                loadHomeFragment();
+                CURRENT_TAG = TAG_ATTANDANCE;
+                loadAttandanceFragment();
                 return;
             }
         }
@@ -352,7 +343,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
 
-        // show menu only when home fragment is selected
+        // show menu only when Attandance fragment is selected
         if (navItemIndex == 0) {
             getMenuInflater().inflate(R.menu.main, menu);
         }
@@ -367,7 +358,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
+        // automatically handle clicks on the Attandance/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 

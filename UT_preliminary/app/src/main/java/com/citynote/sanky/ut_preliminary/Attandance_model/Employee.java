@@ -1,4 +1,4 @@
-package com.citynote.sanky.ut_preliminary.Test;
+package com.citynote.sanky.ut_preliminary.Attandance_model;
 
 import java.util.ArrayList;
 

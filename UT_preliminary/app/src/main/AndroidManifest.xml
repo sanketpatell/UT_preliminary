@@ -1,20 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.citynote.sanky.ut_preliminary">
-
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="com.android.email.permission.READ_ATTACHMENT"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+
 
 
     <application
-        android:name=".Test.AppController"
+        android:name=".Attandance_model.AppController"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -24,6 +20,7 @@
             android:name=".Activity.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -42,10 +39,14 @@
             android:name=".Activity.Login"
             android:label="@string/app_name" />
         <activity android:name=".Activity.AboutUsActivity"></activity>
-        <activity android:name=".Activity.PrivacyPolicyActivity"></activity>
 
-        <!-- <activity android:name=".Splash.SplashScreen"></activity> -->
-        <activity android:name=".Activity.Test"></activity>
+        <activity android:name=".Activity.LeaveActivity"
+            android:label="@string/leave_activity_name" />
+
+         <activity android:name=".Splash.SplashScreen"></activity>
+
+        <activity android:name=".Photos.FullScreenActivity"> </activity>
+
 
     </application>
 

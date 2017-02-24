@@ -1,7 +1,6 @@
-package com.citynote.sanky.ut_preliminary.Test;
+package com.citynote.sanky.ut_preliminary.Attandance_model;
 
 
-import com.citynote.sanky.ut_preliminary.Test.UohBitmapCache;
 import android.app.Application;
 import android.text.TextUtils;
 

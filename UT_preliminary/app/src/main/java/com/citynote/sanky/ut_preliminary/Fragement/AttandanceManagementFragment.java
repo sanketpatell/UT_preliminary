@@ -1,40 +1,40 @@
-package com.citynote.sanky.ut_preliminary.Activity;
+package com.citynote.sanky.ut_preliminary.Fragement;
 
-import com.citynote.sanky.ut_preliminary.Fragement.Attandance_management;
-import com.citynote.sanky.ut_preliminary.Test.CustomListAdapter;
-import com.citynote.sanky.ut_preliminary.Test.AppController;
-import com.citynote.sanky.ut_preliminary.Test.Employee;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import android.app.Activity;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.util.Log;
-import android.view.Menu;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.citynote.sanky.ut_preliminary.R;
+import com.citynote.sanky.ut_preliminary.Attandance_model.AppController;
+import com.citynote.sanky.ut_preliminary.Attandance_model.CustomListAdapter;
+import com.citynote.sanky.ut_preliminary.Attandance_model.Employee;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-public class Test extends Activity {
+import java.util.ArrayList;
+import java.util.List;
+
+public class AttandanceManagementFragment extends Fragment {
     // Log tag
-    private static final String TAG = Test.class.getSimpleName();
+    private static final String TAG = AttandanceManagementFragment.class.getSimpleName();
 
     // Movies json url   http://citynote.in/sanket/uohemploye.json
     private static final String url = "http://citynote.in/sanket/uohemploye.php";
@@ -43,21 +43,57 @@ public class Test extends Activity {
     private List<Employee> employeeList = new ArrayList<Employee>();
     private ListView listView;
     private CustomListAdapter adapter;
+    String title = "Sanket Patel";
+
+    Fragment fr=null;
+    android.support.v4.app.FragmentTransaction transaction;
+    android.support.v4.app.FragmentManager fm;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_test);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View AttandanceFragmentView = inflater.inflate(R.layout.fragment_attandance, container, false);
 
-        listView = (ListView) findViewById(R.id.list);
-        adapter = new CustomListAdapter(this, employeeList);
+
+        listView = (ListView) AttandanceFragmentView.findViewById(R.id.list);
+        adapter = new CustomListAdapter(getActivity(), employeeList);
         listView.setAdapter(adapter);
 
 
         listView.setAdapter(adapter);
-        listView.setOnItemClickListener(new ListClickHandler());
 
-        pDialog = new ProgressDialog(this);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position,
+                                    long id) {
+
+                if(title.equals("Sanket Patel")) {
+                    fr = new UserdetailsFragment();
+                    if (fr != null) {
+                        fm = getFragmentManager();
+                        transaction = fm.beginTransaction();
+                        transaction.replace(R.id.attandanceframe, fr, null)
+                                .addToBackStack(null)
+                               .commit();
+
+                       /* transaction.replace(R.id.attandanceframe, fr);
+                        transaction.addToBackStack(null).commit();*/
+                    } else {
+                        Log.e("AttandaceFragment", "Error in creating fragment");
+                           }
+                    }
+                    else {
+                        Log.e("AttandaceFragment", " Another user Details   ");
+                         }
+             }
+        });
+
+
+
+
+        pDialog = new ProgressDialog(getActivity());
         // Showing progress dialog before making http request
         pDialog.setMessage("Loading...");
         pDialog.show();
@@ -114,13 +150,16 @@ public class Test extends Activity {
 
         // Adding request to request queue
         AppController.getInstance().addToRequestQueue(employeeReq);
+
+
+        return AttandanceFragmentView;
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        hidePDialog();
+    public interface OnFragmentInteractionListener {
+        // TODO: Update argument type and name
+        void onFragmentInteraction(Uri uri);
     }
+
 
     private void hidePDialog() {
         if (pDialog != null) {
@@ -129,19 +168,4 @@ public class Test extends Activity {
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-    public class ListClickHandler implements AdapterView.OnItemClickListener {
-        @Override
-        public void onItemClick(AdapterView<?> adapter, View view, int position, long arg3) {
-
-            Intent intent = new Intent(Test.this, Attandance_management.class);
-
-            startActivity(intent);
-            }
-    }
 }

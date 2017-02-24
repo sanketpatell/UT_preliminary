@@ -1,0 +1,205 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="@color/red_100"
+    android:clickable="true">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:layout_margin="10dp"
+                android:layout_weight="0.1"
+                android:orientation="horizontal">
+
+                <!-- Thumbnail1 Image -->
+                <com.android.volley.toolbox.NetworkImageView
+                    android:id="@+id/thumbnail1"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginRight="8dp"
+                    android:background="@drawable/ic_menu_gallery"/>
+
+                <!-- Employee Title -->
+                <TextView
+                    android:id="@+id/emp_name1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/thumbnail1"
+                    android:layout_toRightOf="@+id/thumbnail1"
+                    android:textSize="@dimen/name"
+                    android:text="dfvrbreb rtnbtn "
+                    android:textStyle="bold" />
+
+                <!-- Email -->
+                <TextView
+                    android:id="@+id/emp_email1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/emp_name1"
+                    android:layout_marginTop="1dip"
+                    android:layout_toRightOf="@+id/thumbnail1"
+                    android:textSize="@dimen/email"
+                    android:text="bwrbrtbrtbr brtbr rb r"/>
+
+                <!-- Post -->
+                <TextView
+                    android:id="@+id/emp_post1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/emp_email1"
+                    android:layout_marginTop="5dp"
+                    android:layout_toRightOf="@+id/thumbnail1"
+                    android:textColor="@color/genre"
+                    android:textSize="@dimen/post"
+                    android:text="bsrbbb brfrb rb b fgb r vvergwvv e "/>
+                <TextView
+                    android:id="@+id/emp_status1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:textColor="@color/present"
+                    android:textSize="@dimen/status"
+                    />
+
+            </RelativeLayout>
+
+    <LinearLayout
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="2"
+        android:orientation="horizontal" >
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"  >
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="0dp"
+                android:background="#000"
+                android:id="@+id/devider"
+                />
+            <DatePicker
+                android:id="@+id/date_picker"
+                android:layout_width="wrap_content"
+                android:calendarViewShown="false"
+                android:datePickerMode="spinner"
+
+                android:layout_height="25dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="10dp"
+                />
+
+            <TextView android:id="@+id/working_dys"
+                android:layout_width="270dp"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:layout_marginTop="12dp"
+                android:layout_marginLeft="15dp"
+                android:text="Total Working Days"
+                android:layout_below="@+id/date_picker" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_marginTop="12dp"
+                android:gravity="center_vertical"
+                android:hint="DAYS"
+                android:layout_height="40dp"
+                android:id="@+id/p_days"
+                android:layout_below="@+id/date_picker"
+                android:layout_toRightOf="@+id/working_dys"/>
+            <TextView android:id="@+id/holiday"
+                android:layout_width="270dp"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:layout_marginTop="12dp"
+                android:layout_marginLeft="15dp"
+                android:text="Total Holidays Days"
+                android:layout_below="@+id/working_dys" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_marginTop="12dp"
+                android:gravity="center_vertical"
+                android:hint="DAYS"
+                android:id="@+id/h_days"
+                android:layout_height="40dp"
+                android:layout_below="@+id/p_days"
+                android:layout_toRightOf="@+id/working_dys"/>
+            <TextView android:id="@+id/absent_days"
+                android:layout_width="270dp"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:layout_marginTop="12dp"
+                android:layout_marginLeft="15dp"
+                android:text="Total Absent Days"
+                android:layout_below="@+id/holiday" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_marginTop="12dp"
+                android:gravity="center_vertical"
+                android:hint="DAYS"
+                android:id="@+id/a_days"
+                android:layout_height="40dp"
+                android:layout_below="@+id/h_days"
+                android:layout_toRightOf="@+id/working_dys"/>
+
+            <TextView android:id="@+id/leav_days"
+                android:layout_width="270dp"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:layout_marginTop="12dp"
+                android:layout_marginLeft="15dp"
+                android:text="Total Leave Days"
+                android:layout_below="@+id/absent_days" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_marginTop="12dp"
+                android:gravity="center_vertical"
+                android:hint="DAYS"
+                android:id="@+id/l_days"
+                android:layout_height="40dp"
+                android:layout_below="@+id/a_days"
+                android:layout_toRightOf="@+id/working_dys"/>
+
+
+            <TextView android:id="@+id/total_days"
+                android:layout_width="270dp"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:layout_marginTop="12dp"
+                android:layout_marginLeft="15dp"
+                android:text="Total  Days"
+                android:layout_below="@+id/leav_days" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_marginTop="12dp"
+                android:gravity="center_vertical"
+                android:hint="DAYS"
+                android:id="@+id/t_days"
+                android:layout_height="40dp"
+                android:layout_below="@+id/l_days"
+                android:layout_toRightOf="@+id/total_days"/>
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
+
+

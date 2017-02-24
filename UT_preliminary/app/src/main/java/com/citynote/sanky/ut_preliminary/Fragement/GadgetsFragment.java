@@ -16,11 +16,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.citynote.sanky.ut_preliminary.Email.SendMail;
 import com.citynote.sanky.ut_preliminary.R;
 
 public class GadgetsFragment extends Fragment {
 
-    Button Submit;
+    //Declaring EditText
+    String editTextEmail ="sanketleader@gmail.com";
+    private EditText editText_gadgets_requirement;
+    private EditText editText_gadgets_description;
+
+    //Send button
+    private Button buttonSend,buttonclear;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -28,29 +37,43 @@ public class GadgetsFragment extends Fragment {
         // Inflate the layout for this fragment
         View GadgetsFragmentView = inflater.inflate(R.layout.fragment_gadgets, container, false);
 
-        Submit = (Button) GadgetsFragmentView.findViewById(R.id.gadgets_submit);
+        //Initializing the views
+        //editTextEmail = (EditText) findViewById(R.id.editTextEmail);
+        editText_gadgets_requirement = (EditText) GadgetsFragmentView.findViewById(R.id.gadgets_requirement);
+        editText_gadgets_description = (EditText) GadgetsFragmentView.findViewById(R.id.gadgets_description);
+
+        buttonSend = (Button) GadgetsFragmentView.findViewById(R.id.gadgets_submit);
+        buttonSend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Getting content for email
+                String email = editTextEmail.toString().trim();
+                String subject = editText_gadgets_requirement.getText().toString().trim();
+                String message = editText_gadgets_description.getText().toString().trim();
+
+                //Creating SendMail object
+                SendMail sm = new SendMail(getActivity(), email, subject, message);
+
+                //Executing sendmail to send email
+                sm.execute();
+            }
+        });
+
+        buttonclear = (Button) GadgetsFragmentView.findViewById(R.id.gadgets_clear);
+        buttonclear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editText_gadgets_requirement.setText("");
+                editText_gadgets_description.setText("");
+
+            }
+        });
+       /* //Adding click listener
+        buttonSend.setOnClickListener((View.OnClickListener) GadgetsFragmentView);*/
+
         return GadgetsFragmentView;
-
     }
 
-    public void sendEmail(View button) {
-        /*final EditText formName = (EditText) findViewById(R.id.formName);
-        String clientName = formName.getText().toString();
-        final EditText formEmail = (EditText) findViewById(R.id.formEmail);
-        String clientEmail = formEmail.getText().toString();
-        final EditText formDetails = (EditText) findViewById(R.id.formDetails);
-        String clientDetails = formDetails.getText().toString();*/
 
-        Intent i = new Intent(Intent.ACTION_SEND);
-        i.setType("message/rfc822");
-        i.putExtra(Intent.EXTRA_EMAIL, new String[]{"example@email.com"});
-        i.putExtra(Intent.EXTRA_SUBJECT, "New Private Service Request");
-        i.putExtra(Intent.EXTRA_TEXT, "TODO: compose message body");
-        try {
-            startActivity(Intent.createChooser(i, "Send email with...?"));
-        } catch (android.content.ActivityNotFoundException exception) {
-            Toast.makeText(GadgetsFragment.this.getActivity(), "No email clients installed on device!", Toast.LENGTH_LONG).show();
-        }
-
-    }
 }
+
