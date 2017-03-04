@@ -58,6 +58,7 @@ public class CustomListAdapter extends BaseAdapter {
             imageLoader = AppController.getInstance().getImageLoader();
         NetworkImageView thumbNail = (NetworkImageView) convertView
                 .findViewById(R.id.thumbnail);
+        TextView id = (TextView) convertView.findViewById(R.id.emp_id);
         TextView name = (TextView) convertView.findViewById(R.id.emp_name);
         TextView email = (TextView) convertView.findViewById(R.id.emp_email);
         TextView post = (TextView) convertView.findViewById(R.id.emp_post);
@@ -70,20 +71,26 @@ public class CustomListAdapter extends BaseAdapter {
         // thumbnail image
         thumbNail.setImageUrl(m.getThumbnailUrl(), imageLoader);
 
+        // emp_id
+        id.setText(m.getId());
+
         // emp_name
         name.setText(m.getTitle());
 
         // email
         email.setText("Email: " + String.valueOf(m.getEmail()));
 
-        // post
+
+        post.setText(m.getGenre());
+
+       /* // post
         String postStr = "";
         for (String str : m.getPost()) {
             postStr += str + ", ";
         }
         postStr = postStr.length() > 0 ? postStr.substring(0,
                 postStr.length() - 2) : postStr;
-        post.setText(postStr);
+        post.setText(postStr);*/
 
         // release year
         status.setText(String.valueOf(m.getStatus()));

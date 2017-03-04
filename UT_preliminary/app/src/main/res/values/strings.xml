@@ -69,6 +69,7 @@
     
     <string name="aboutus1">UOhmac Technologies, head quartered in Silicon Valley of India Bangalore, providing Information Technology Hosting Services provides, Product Engineering, Complete Enterprise CRM Automation Solutions on Cloud Computing Salesforce.com CRM Force.com, Innovative Consulting,  Application Hosting and Corporate, Open House School Learning Solutions.  Feel the difference with a decade of Generic Customer Relationship Management expertise Pioneer six plus years of Trusted Cloud Salesforce.com CRM Technology Solutions; i.e. since Salesforce.com stepped in India, we are into...
 The company has niche Consultant strengths in building and managing a Business Oriented IT environment with rich experience in Product and Project Engineering, Business Intelligence, Technology Incubation, Data Management, CRM Consulting, Analytics, Data Warehousing. We are here to provide you with supreme SLAs with highly scalable infrastructure available on services. </string>
+    <string name="title_activity_splash">SplashActivity</string>
 
 
 </resources>

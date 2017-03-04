@@ -2,6 +2,7 @@ package com.citynote.sanky.ut_preliminary.Activity;
 
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
@@ -14,6 +15,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,6 +26,8 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
+import com.citynote.sanky.ut_preliminary.Attandance_model.DBHelper;
+import com.citynote.sanky.ut_preliminary.Attandance_model.HttpHandler;
 import com.citynote.sanky.ut_preliminary.Fragement.GadgetsFragment;
 import com.citynote.sanky.ut_preliminary.Fragement.PhotosFragment;
 import com.citynote.sanky.ut_preliminary.R;
@@ -31,6 +35,10 @@ import com.citynote.sanky.ut_preliminary.Fragement.AttandanceManagementFragment;
 import com.citynote.sanky.ut_preliminary.Fragement.NotificationsFragment;
 import com.citynote.sanky.ut_preliminary.Fragement.SettingsFragment;
 import com.citynote.sanky.ut_preliminary.CircleTransform;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -40,7 +48,20 @@ public class MainActivity extends AppCompatActivity {
     private ImageView imgNavHeaderBg, imgProfile;
     private TextView txtName, txtWebsite;
     private Toolbar toolbar;
-    private FloatingActionButton fab;
+
+    private static final String urlattandance = "http://citynote.in/sanket/attandance.php";
+    JSONArray jsonarray;
+    JSONObject jsonObject;
+    DBHelper db;
+
+
+    private String TAG = MainActivity.class.getSimpleName();
+
+    Integer id_a;
+    Integer Id_a;
+    String emp_id,date,status_a;
+    String Emp_id,Date,Status_a;
+
 
     // urls to load navigation header background image
     // and profile image
@@ -79,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
-        fab = (FloatingActionButton) findViewById(R.id.fab);
+
 
         // Navigation view header
         navHeader = navigationView.getHeaderView(0);
@@ -91,13 +112,7 @@ public class MainActivity extends AppCompatActivity {
         // load toolbar titles from string resources
         activityTitles = getResources().getStringArray(R.array.nav_item_activity_titles);
 
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
 
         // load nav menu header data
         loadNavHeader();
@@ -110,6 +125,12 @@ public class MainActivity extends AppCompatActivity {
             CURRENT_TAG = TAG_ATTANDANCE;
             loadAttandanceFragment();
         }
+
+        db = new DBHelper(this);
+        db.open();
+
+        new Getattandance().execute();
+
     }
 
     /***
@@ -156,8 +177,7 @@ public class MainActivity extends AppCompatActivity {
         if (getSupportFragmentManager().findFragmentByTag(CURRENT_TAG) != null) {
             drawer.closeDrawers();
 
-            // show or hide the fab button
-            toggleFab();
+
             return;
         }
 
@@ -183,8 +203,7 @@ public class MainActivity extends AppCompatActivity {
             mHandler.post(mPendingRunnable);
         }
 
-        // show or hide the fab button
-        toggleFab();
+
 
         //Closing drawer on item click
         drawer.closeDrawers();
@@ -382,12 +401,70 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+    private class Getattandance extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
 
-    // show or hide the fab
-    private void toggleFab() {
-        if (navItemIndex == 0)
-            fab.show();
-        else
-            fab.hide();
+        @Override
+        protected Void doInBackground(Void... arg0) {
+            HttpHandler sh1 = new HttpHandler();
+            String jsonStr1 = sh1.makeServiceCall(urlattandance);
+            Log.e(TAG, "Response from url1: " + jsonStr1);
+            if (jsonStr1 != null) {
+                try {
+                    jsonarray = new JSONArray(jsonStr1);
+                    for (int i = 0; i < jsonarray.length(); i++) {
+                        jsonObject = jsonarray.getJSONObject(i);
+                        Log.e("jsonObject1111111111", "" + jsonObject);
+
+                        id_a = jsonObject.getInt("id");
+                        emp_id = jsonObject.getString("emp_id");
+                        date = jsonObject.getString("date");
+                        status_a = jsonObject.getString("status");
+
+                        Id_a = id_a.intValue();
+                        Emp_id = emp_id.toString().trim();
+                        Date = date.toString().trim();
+                        Status_a = status_a.toString().trim();
+
+
+
+                        Log.i(TAG, "Id: " + Id_a);
+                        Log.i(TAG, "emp_id: " + Emp_id);
+                        Log.i(TAG, "Date: " + Date);
+                        Log.i(TAG, "Status: " + Status_a);
+
+                        db.inserIntoattandance(Id_a, Emp_id, Date, Status_a);
+
+                        db.getpresent_date();
+
+
+                    }
+                } catch (final JSONException e) {
+                    Log.e(TAG, "Json parsing error: " + e.getMessage());
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(getApplicationContext(),
+                                    "Json parsing error: " + e.getMessage(),
+                                    Toast.LENGTH_LONG)
+                                    .show();
+                        }
+                    });
+                }
+            } else {
+              /*  Log.e(TAG, "Couldn't get json from server.");
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(getApplicationContext(),"Couldn't get json from server. Check LogCat for possible errors!",Toast.LENGTH_LONG).show();
+                    }
+                });*/
+            }
+            return null;
+        }
     }
+
 }

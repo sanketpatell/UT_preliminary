@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/flaganim"
+	android:oneshot="false"
+	>
+    <item android:drawable="@drawable/uohmac1" android:duration="100" />
+    <item android:drawable="@drawable/uohmac2" android:duration="100" />
+    <item android:drawable="@drawable/uohmac3" android:duration="100" />
+    <item android:drawable="@drawable/uohmac4" android:duration="100" />
+    <item android:drawable="@drawable/uohmac5" android:duration="100" />
+    <item android:drawable="@drawable/uohmac6" android:duration="100" />
+    <item android:drawable="@drawable/uohmac" android:duration="100" />
+
+</animation-list>
