@@ -53,13 +53,16 @@
         <activity
             android:name=".Activity.Login"
             android:label="@string/app_name" />
-        <activity android:name=".Activity.AboutUsActivity" />
+        <activity
+            android:name=".Activity.AboutUsActivity" />
         <activity
             android:name=".Activity.LeaveActivity"
             android:label="@string/leave_activity_name" />
-        <activity android:name=".Photos.FullScreenActivity" />
+        <activity
+            android:name=".Photos.FullScreenActivity" />
 
-        <activity android:name=".Splash.SplashActivity2"></activity>
+        <activity
+            android:name=".Splash.SplashActivity2"></activity>
     </application>
 
 </manifest>

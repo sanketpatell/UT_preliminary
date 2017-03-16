@@ -2,12 +2,11 @@ package com.citynote.sanky.ut_preliminary.Activity;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
@@ -30,10 +29,10 @@ import com.citynote.sanky.ut_preliminary.Attandance_model.DBHelper;
 import com.citynote.sanky.ut_preliminary.Attandance_model.HttpHandler;
 import com.citynote.sanky.ut_preliminary.Fragement.GadgetsFragment;
 import com.citynote.sanky.ut_preliminary.Fragement.PhotosFragment;
+import com.citynote.sanky.ut_preliminary.Fragement.UserdetailsFragment;
 import com.citynote.sanky.ut_preliminary.R;
-import com.citynote.sanky.ut_preliminary.Fragement.AttandanceManagementFragment;
 import com.citynote.sanky.ut_preliminary.Fragement.NotificationsFragment;
-import com.citynote.sanky.ut_preliminary.Fragement.SettingsFragment;
+import com.citynote.sanky.ut_preliminary.Fragement.EmployessFragment;
 import com.citynote.sanky.ut_preliminary.CircleTransform;
 
 import org.json.JSONArray;
@@ -87,11 +86,25 @@ public class MainActivity extends AppCompatActivity {
     private boolean shouldLoadAttandanceFragOnBackPress = true;
     private Handler mHandler;
 
-
+    SharedPreferences sharedpreferences;
+    SharedPreferences.Editor spt;
+    String Employee_id="",Password="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+                 sharedpreferences = getSharedPreferences("MyPREFERENCES", 0);
+                 spt = sharedpreferences.edit();
+
+                Employee_id =sharedpreferences.getString("employee_id", "1");
+                Password=sharedpreferences.getString("password","1");
+
+        Log.d("employee_id","1   "+ Employee_id);
+        Log.d("password","2 "+ Password);
+
+
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -216,7 +229,7 @@ public class MainActivity extends AppCompatActivity {
         switch (navItemIndex) {
             case 0:
                 // Attandance
-                AttandanceManagementFragment AttandanceFragment = new AttandanceManagementFragment();
+                UserdetailsFragment AttandanceFragment = new UserdetailsFragment();
                 return AttandanceFragment;
             case 1:
                 // photos
@@ -233,14 +246,14 @@ public class MainActivity extends AppCompatActivity {
 
             case 4:
                 // settings fragment
-                SettingsFragment settingsFragment = new SettingsFragment();
+                EmployessFragment settingsFragment = new EmployessFragment();
                 return settingsFragment;
            /* case 5:
                 // Attandance_management fragment
                 Attandance_management Attandance_management = new Attandance_management();
                 return Attandance_management;*/
             default:
-                return new AttandanceManagementFragment();
+                return new UserdetailsFragment();
         }
     }
 
@@ -383,7 +396,13 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_logout) {
-            Toast.makeText(getApplicationContext(), "Logout user!", Toast.LENGTH_LONG).show();
+            /*SharedPreferences sharedpreferences = getSharedPreferences(Login.MyPREFERENCES, Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedpreferences.edit();
+            editor.clear();
+            editor.commit();*/
+            Intent intent = new Intent(MainActivity.this,Login.class);
+            startActivity(intent);
+            Toast.makeText(getApplicationContext(), "You are successfully Logout!", Toast.LENGTH_LONG).show();
             return true;
         }
 
@@ -411,13 +430,13 @@ public class MainActivity extends AppCompatActivity {
         protected Void doInBackground(Void... arg0) {
             HttpHandler sh1 = new HttpHandler();
             String jsonStr1 = sh1.makeServiceCall(urlattandance);
-            Log.e(TAG, "Response from url1: " + jsonStr1);
+           // Log.e(TAG, "Response from url1: " + jsonStr1);
             if (jsonStr1 != null) {
                 try {
                     jsonarray = new JSONArray(jsonStr1);
                     for (int i = 0; i < jsonarray.length(); i++) {
                         jsonObject = jsonarray.getJSONObject(i);
-                        Log.e("jsonObject1111111111", "" + jsonObject);
+                       // Log.e("jsonObject1111111111", "" + jsonObject);
 
                         id_a = jsonObject.getInt("id");
                         emp_id = jsonObject.getString("emp_id");
@@ -430,11 +449,11 @@ public class MainActivity extends AppCompatActivity {
                         Status_a = status_a.toString().trim();
 
 
-
-                        Log.i(TAG, "Id: " + Id_a);
+                    // for showing values in log
+                      /*  Log.i(TAG, "Id: " + Id_a);
                         Log.i(TAG, "emp_id: " + Emp_id);
                         Log.i(TAG, "Date: " + Date);
-                        Log.i(TAG, "Status: " + Status_a);
+                        Log.i(TAG, "Status: " + Status_a);*/
 
                         db.inserIntoattandance(Id_a, Emp_id, Date, Status_a);
 
@@ -443,7 +462,7 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                 } catch (final JSONException e) {
-                    Log.e(TAG, "Json parsing error: " + e.getMessage());
+                    //Log.e(TAG, "Json parsing error: " + e.getMessage());
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {

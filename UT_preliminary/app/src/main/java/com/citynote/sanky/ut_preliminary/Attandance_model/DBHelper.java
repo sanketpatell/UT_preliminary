@@ -28,7 +28,7 @@ public class DBHelper {
 
     public void inserIntoattandance(Integer id,String emp_id,String date,String status)
     {
-        Log.d("****", "====" + id + " " + emp_id + " " + date + " " + status);
+       // Log.d("****", "====" + id + " " + emp_id + " " + date + " " + status);
 
         ContentValues cv = new ContentValues();
         cv.put("id", id);
@@ -58,7 +58,7 @@ public class DBHelper {
             {
                 do {
                     String date=cursor.getString(2);
-                    Log.e("DATEEE", date);
+                   // Log.e("DATEEE", date);
                     listt.add(date);
 
                 }while (cursor.moveToNext());
@@ -84,7 +84,7 @@ public class DBHelper {
             {
                 do {
                     String date=cursor.getString(2);
-                    Log.e("DATEEE", date);
+                   // Log.e("DATEEE", date);
                     listt.add(date);
 
                 }while (cursor.moveToNext());

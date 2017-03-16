@@ -99,7 +99,7 @@ public class AttandanceManagementFragment extends Fragment {
                       fm = getFragmentManager();
                       transaction = fm.beginTransaction();
 
-//send data to next fragment
+                    //send data to next fragment
                       Bundle args = new Bundle();
                       args.putString("current_user_id", employeeList.get(position).getId());
                       args.putString("emp_name2", employeeList.get(position).getTitle());
@@ -209,11 +209,11 @@ public class AttandanceManagementFragment extends Fragment {
         dialog = new Dialog(getActivity());
         dialog.setContentView(R.layout.fragment_anotheruserdetails);
         dialog.setTitle("Custom Dialog");
-        d_thumbNail2 = (ImageView) dialog.findViewById(R.id.thumbnail2);
+       /* d_thumbNail2 = (ImageView) dialog.findViewById(R.id.thumbnail2);
         d_name = (TextView) dialog.findViewById(R.id.emp_name2);
         d_email = (TextView) dialog.findViewById(R.id.emp_email2);
         d_post = (TextView) dialog.findViewById(R.id.emp_post2);
-        d_status = (TextView) dialog.findViewById(R.id.emp_status2);
+        d_status = (TextView) dialog.findViewById(R.id.emp_status2);*/
 
         //if(list.equals(position)) {
 

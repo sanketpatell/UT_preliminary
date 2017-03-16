@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -29,64 +30,50 @@ import javax.net.ssl.HttpsURLConnection;
  * Created by sanky on 20-01-2017.
  */
 
-public class Login extends MainActivity {
-    EditText email,pass;
+public class Login extends AppCompatActivity {
+    EditText emp_id,pass;
     Button login,signup;
-    String status,user_name,pass_word,response,message;
+    String status,empl_id,pass_word,response,message,employee_id,password;
     JSONObject jsonObject;
 
     //shared preferance setting+ include sharedpreference pacakge by using "alt+enter"
-    public static final String MyPREFERENCES = "MyPrefs" ;
-    public static final String Email = "emailkey";
+    public static final String MyPREFERENCES = "uohmac" ;
+    public static final String Status = "status_key";
+    public static final String Emp_id = "em_idkey";
     public static final String Pass = "passkey";
     SharedPreferences sharedpreferences;
-
+    SharedPreferences.Editor spt;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        sharedpreferences = getSharedPreferences("MyPREFERENCES", 0);
+        spt = sharedpreferences.edit();
 
-
-        email = (EditText) findViewById(R.id.email);
+        emp_id = (EditText) findViewById(R.id.emp_id);
         pass = (EditText) findViewById(R.id.password);
         login = (Button) findViewById(R.id.btnLogin);
         signup = (Button) findViewById(R.id.btnLinkToRegisterScreen);
 
 
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(email.getText().toString().trim().equals("")) {
-                    email.setError("Write UserName");
+                if(emp_id.getText().toString().trim().equals("")) {
+                    emp_id.setError("Write UserName");
                 }
                 else if(pass.getText().toString().trim().equals("")){
                     pass.setError("Password Required");
                 }
 
                 else{
-                    user_name = email.getText().toString();
+                    empl_id = emp_id.getText().toString();
                     pass_word = pass.getText().toString();
-                    new loginparser().execute(user_name, pass_word);
+                    new loginparser().execute(empl_id, pass_word);
 
-                     Intent intent=new Intent(Login.this,MainActivity.class);
-                     startActivity(intent);
-
-                    String e  = email.getText().toString();
-                    String pa  = pass.getText().toString();
-                    SharedPreferences.Editor editor = sharedpreferences.edit();
-
-                    editor.putString(Email, e);
-                    editor.putString(Pass, pa);
-                    editor.commit();
-
-                    String value3 = sharedpreferences.getString("emailKey", "");
-                    Log.d(Email, value3);
-                    String value4 = sharedpreferences.getString("passwordKey", "");
-                    Log.d(Pass, value4);
 
                 }
             }
@@ -121,14 +108,14 @@ public class Login extends MainActivity {
         protected String doInBackground(String... params) {
             try {
 
-                url = new URL("http://blessindia.in/webservice/login.php");
+                url = new URL("http://blessindia.in/webservice/login_uohmac.php");
                 httpconnection = (HttpURLConnection) url.openConnection();
                 httpconnection.setRequestMethod("POST");
                 httpconnection.setDoInput(true);
                 httpconnection.setDoOutput(true);
                 httpconnection.connect();
                 Uri.Builder builder = new Uri.Builder()
-                        .appendQueryParameter("email", params[0])
+                        .appendQueryParameter("employee_id", params[0])
                         .appendQueryParameter("password", params[1]);
                 String query = builder.build().getEncodedQuery();
 
@@ -178,14 +165,25 @@ public class Login extends MainActivity {
                 status = jsonObject.getString("status");
                 Log.e("st",status);
                 message = jsonObject.getString("msg");
-                Log.e("response", message);
+                employee_id = jsonObject.getString("employee_id");
+                password = jsonObject.getString("password");
 
-                // Toast.makeText(Login.this, message, Toast.LENGTH_SHORT).show();
+                Toast.makeText(Login.this, message, Toast.LENGTH_SHORT).show();
 
-                if(message.equals("Login successfully")){
+                if(status.equals("1")){
+
+
                     Intent intent = new Intent(Login.this,MainActivity.class);
+                    spt.putString("status", status);
+                    spt.putString("success", "succesfully");
+                    //  editor.putString(Pass, pa);
+                    spt.putString("employee_id", employee_id);
+                    spt.putString("password", password);
+
+                    spt.commit();
 
                     startActivity(intent);
+                    Log.e("status_preference", status);
                 }else{
                     Toast.makeText(Login.this,message,Toast.LENGTH_LONG).show();
                 }

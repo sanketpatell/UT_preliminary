@@ -2,21 +2,33 @@ package com.citynote.sanky.ut_preliminary.Splash;
 
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MotionEvent;
 import android.widget.ImageView;
 
+import com.citynote.sanky.ut_preliminary.Activity.Login;
 import com.citynote.sanky.ut_preliminary.Activity.MainActivity;
+import com.citynote.sanky.ut_preliminary.Activity.Signup;
 import com.citynote.sanky.ut_preliminary.R;
 
 public class SplashActivity extends Activity {
+    //SharedPreferences sharedpreferences = getSharedPreferences(Login.MyPREFERENCES, Context.MODE_PRIVATE);
 
-    /**
-     * The thread to process splash screen events
-     */
+
+
+   SharedPreferences sharedpreferences;
+
+    SharedPreferences.Editor spt;
+
+//   String Status = sharedpreferences.getString("status", null);
+
+     //The thread to process splash screen events
+
     private Thread mSplashThread;
 
     /** Called when the activity is first created. */
@@ -26,6 +38,12 @@ public class SplashActivity extends Activity {
 
         // Splash screen view
         setContentView(R.layout.activity_splash);
+        sharedpreferences = getSharedPreferences("MyPREFERENCES", 0);
+
+        spt = sharedpreferences.edit();
+
+
+
 
         // Start animating the image
         final ImageView splashImageView = (ImageView) findViewById(R.id.SplashImageView);
@@ -52,17 +70,25 @@ public class SplashActivity extends Activity {
                     }
                 }
                 catch(InterruptedException ex){
+                }finally {
+                    if (sharedpreferences.getString("success", "-1").equals("succesfully"))
+                    {
+                        Intent i = new Intent(SplashActivity.this,MainActivity.class);
+                        startActivity(i);
+                    }
+                    else{
+
+                        // Run next activity
+                        Intent intent = new Intent(SplashActivity.this, Login.class);
+                        startActivity(intent);
+                        //stop(); \
+                        finish();
+                    }
+
                 }
 
 
-
-                // Run next activity
-                Intent intent = new Intent();
-                intent.setClass(sPlashScreen, MainActivity.class);
-                startActivity(intent);
-                //stop(); \
-                finish();
-            }
+         }
         };
 
         mSplashThread.start();

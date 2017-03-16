@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/list_row_selector"
+    android:layout_gravity="center">
+
+    <!-- Thumbnail Image -->
+    <ImageView
+        android:id="@+id/current_user_image"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center|center_horizontal"
+        android:layout_marginLeft="90dp"
+        android:src="@drawable/ic_menu_gallery"
+
+        />
+
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/current_user_image">
+    <RelativeLayout
+        android:id="@+id/current_userdetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="4dp"
+        android:layout_margin="5dp"
+        android:layout_weight="0.1"
+        android:orientation="horizontal"
+       >
+
+
+    <!-- Employee ID -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/l1"
+        android:gravity="center">
+
+    <TextView
+        android:id="@+id/curr_emp_id1"
+        android:text="Employee ID :"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/name"
+        android:layout_weight=".05"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/curr_emp_id"
+        android:text="Employee ID"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:layout_weight=".05"
+        android:textSize="12dp"
+        android:textStyle="bold" />
+
+    </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/l1"
+            android:orientation="horizontal"
+            android:id="@+id/l2"
+            android:gravity="center">
+
+        <!-- Employee First Name -->
+        <TextView
+            android:id="@+id/curr_emp_fname1"
+            android:text="First Name   :"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/name"
+            android:layout_weight=".05"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/curr_emp_fname"
+            android:text="First Name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:layout_weight=".05"
+            android:textSize="12dp"
+            android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/l2"
+            android:orientation="horizontal"
+            android:id="@+id/l3"
+            android:gravity="center">
+
+            <!-- Employee Last Name -->
+            <TextView
+                android:id="@+id/curr_emp_lname1"
+                android:text="Last Name   :"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/name"
+                android:layout_weight=".05"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/curr_emp_lname"
+                android:text="Last Name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:layout_weight=".05"
+                android:textSize="12dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/l3"
+            android:orientation="horizontal"
+            android:id="@+id/l4"
+            android:gravity="center">
+
+            <!-- Employee Email -->
+            <TextView
+                android:id="@+id/curr_emp_email1"
+                android:text="Email  ID       :"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/name"
+                android:layout_weight=".05"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/curr_emp_email"
+                android:text="Email id"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:layout_weight=".05"
+                android:textSize="12dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/l4"
+            android:orientation="horizontal"
+            android:id="@+id/l5"
+            android:gravity="center">
+
+            <!-- Employee Mobile -->
+            <TextView
+                android:id="@+id/curr_emp_mobile1"
+                android:text="Mobile No    :"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/name"
+                android:layout_weight=".05"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/curr_emp_mobile"
+                android:text="Mobile no"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:layout_weight=".05"
+                android:textSize="12dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/l5"
+            android:orientation="horizontal"
+            android:id="@+id/l6"
+            android:gravity="center">
+
+            <!-- Employee emergency Mobile -->
+            <TextView
+                android:id="@+id/curr_emp_emg_mobile1"
+                android:text="E mobile No :"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/name"
+                android:layout_weight=".05"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/curr_emp_emg_mobile"
+                android:text="Emergency contect no"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:layout_weight=".05"
+                android:textSize="12dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+            <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/l6"
+            android:orientation="horizontal"
+            android:id="@+id/l7"
+            android:gravity="center">
+
+
+            <!-- Employee Date of Birth -->
+            <TextView
+                android:id="@+id/curr_emp_dob1"
+                android:text="Date of Birth:"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/name"
+                android:layout_weight=".05"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/curr_emp_dob"
+                android:text="Date of Birth"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:layout_weight=".05"
+                android:textSize="12dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/l7"
+            android:orientation="horizontal"
+            android:id="@+id/l8"
+            android:gravity="center">
+
+
+            <!-- Employee blood group -->
+            <TextView
+                android:id="@+id/curr_emp_bg1"
+                android:text="Blood Group:"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/name"
+                android:layout_weight=".05"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/curr_emp_bg"
+                android:text="Blood Group"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:layout_weight=".05"
+                android:textSize="12dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+              <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/l8"
+            android:orientation="horizontal"
+            android:id="@+id/l9"
+            android:gravity="center">
+
+
+            <!-- Employee Joining Date -->
+            <TextView
+                android:id="@+id/curr_emp_jod1"
+                android:text="Date of Join :"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/name"
+                android:layout_weight=".05"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/curr_emp_jod"
+                android:text="Date of Join"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:layout_weight=".05"
+                android:textSize="12dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/l9"
+            android:orientation="horizontal"
+            android:id="@+id/l10"
+            android:gravity="center">
+
+
+            <!-- Employee designation -->
+            <TextView
+                android:id="@+id/curr_emp_designation1"
+                android:text="Designation :"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/name"
+                android:layout_weight=".05"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/curr_emp_designation"
+                android:text="Designation"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:layout_weight=".05"
+                android:textSize="12dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/l10"
+            android:orientation="horizontal"
+            android:id="@+id/l11"
+            android:gravity="center">
+
+
+            <!-- Employee work_exp -->
+            <TextView
+                android:id="@+id/curr_emp_work_exp1"
+                android:text="Work Exp.    :"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/name"
+                android:layout_weight=".05"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/curr_emp_work_exp"
+                android:text="Work Experience"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:layout_weight=".05"
+                android:textSize="12dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/l11"
+            android:orientation="horizontal"
+            android:id="@+id/l12"
+            android:gravity="center">
+
+
+            <!-- Employee technical_skill -->
+            <TextView
+                android:id="@+id/curr_emp_technical_skill1"
+                android:text="Tec.Skills    :"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/name"
+                android:layout_weight=".05"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/curr_emp_technical_skill"
+                android:text="Techinical skills"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:layout_weight=".05"
+                android:textSize="12dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+
+</RelativeLayout>
+</ScrollView>
+</RelativeLayout>
