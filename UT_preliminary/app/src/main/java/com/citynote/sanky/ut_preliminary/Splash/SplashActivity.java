@@ -1,6 +1,7 @@
 package com.citynote.sanky.ut_preliminary.Splash;
 
 
+/*
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -31,7 +32,9 @@ public class SplashActivity extends Activity {
 
     private Thread mSplashThread;
 
-    /** Called when the activity is first created. */
+    */
+/** Called when the activity is first created. *//*
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,9 +104,11 @@ public class SplashActivity extends Activity {
         return false;
     }
 
-    /**
+    */
+/**
      * Processes splash screen touch events
-     */
+     *//*
+
     @Override
     public boolean onTouchEvent(MotionEvent evt)
     {
@@ -118,16 +123,16 @@ public class SplashActivity extends Activity {
 
 
 }
+*/
 
 
-/*
 
 import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
+        import android.content.Intent;
+        import android.os.Bundle;
 
-import com.citynote.sanky.ut_preliminary.Activity.MainActivity;
-import com.citynote.sanky.ut_preliminary.R;
+        import com.citynote.sanky.ut_preliminary.Activity.MainActivity;
+        import com.citynote.sanky.ut_preliminary.R;
 
 
 public class SplashActivity extends Activity implements Runnable {
@@ -147,7 +152,7 @@ public class SplashActivity extends Activity implements Runnable {
 
 
 
-        startActivity(new Intent(SplashActivity.this, SplashActivity2.class));
+        startActivity(new Intent(SplashActivity.this, MainActivity.class));
         finish();
     }
 
@@ -164,4 +169,3 @@ public class SplashActivity extends Activity implements Runnable {
     }
 
 }
-*/

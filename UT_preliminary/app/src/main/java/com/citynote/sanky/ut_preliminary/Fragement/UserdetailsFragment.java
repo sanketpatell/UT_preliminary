@@ -72,7 +72,7 @@ public class UserdetailsFragment extends Fragment {
     private TextView YearMonthTv;
     private ExpCalendarView expCalendarView;
     DBHelper dbHelper;
-
+    ProgressDialog pd;
    String original_date;
     int year,month,date;
     String []split_date;
@@ -112,7 +112,7 @@ TextView curr_emp_id,curr_emp_fname,curr_emp_lname,curr_emp_email,curr_emp_mobil
         spt = sharedpreferences.edit();
 
         Employee_id =sharedpreferences.getString("employee_id", null);
-        Password=sharedpreferences.getString("password",null);
+        Password=sharedpreferences.getString("password", null);
 
         Log.d("employee_id","1   "+ Employee_id);
         Log.d("password","2 "+ Password);
@@ -260,7 +260,7 @@ TextView curr_emp_id,curr_emp_fname,curr_emp_lname,curr_emp_email,curr_emp_mobil
 
     class loginparser extends AsyncTask<String,String,String> {
 
-       // ProgressDialog pdLoading = new ProgressDialog(UserdetailsFragment.this);
+
         URL url = null;
         HttpURLConnection httpconnection;
 
@@ -268,9 +268,10 @@ TextView curr_emp_id,curr_emp_fname,curr_emp_lname,curr_emp_email,curr_emp_mobil
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-           /* pdLoading.setMessage("\tLoading...");
-            pdLoading.setCancelable(false);
-            pdLoading.show();*/
+            pd = new ProgressDialog(getActivity());
+            pd.setMessage("Loading...");
+            pd.setCancelable(false);
+            pd.show();
 
         }
 
@@ -331,7 +332,7 @@ TextView curr_emp_id,curr_emp_fname,curr_emp_lname,curr_emp_email,curr_emp_mobil
 
             super.onPostExecute(res);
             Log.d("showvalueresponc", "====  " + res);
-            //pdLoading.dismiss();
+             pd.dismiss();
 
 
             try {

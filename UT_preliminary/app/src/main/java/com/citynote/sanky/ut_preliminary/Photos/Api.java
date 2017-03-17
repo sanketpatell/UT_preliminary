@@ -3,13 +3,14 @@ package com.citynote.sanky.ut_preliminary.Photos;
 import retrofit.GsonConverterFactory;
 import retrofit.Retrofit;
 import retrofit.http.GET;
+import retrofit.http.POST;
 
 /**
  * Created by pw on 17/3/2559.
  */
 public class Api {
 
-    public static final String API_URL = "https://gank.io";
+    public static final String API_URL = "http://blessindia.in";
 
     private static LoadList Iapi_loadList;
 
@@ -25,7 +26,9 @@ public class Api {
     }
 
     public interface LoadList {
-        @GET("/api/data/福利/213/1")
+        @POST("/webservice/api_img.php")
+
+
         retrofit.Call<PrettyModel> getPrettyModel();
     }
 

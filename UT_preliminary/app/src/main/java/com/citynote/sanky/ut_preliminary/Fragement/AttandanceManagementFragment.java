@@ -89,10 +89,10 @@ public class AttandanceManagementFragment extends Fragment {
        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
            @Override
            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-               String pos = employeeList.get(position).getId();
+               String pos = employeeList.get(position).getemloyee_employee_id();
                   Log.e("Idddd", pos);
 
-              if (employeeList.get(position).getId().equals("1"))
+              if (employeeList.get(position).getemloyee_employee_id().equals("1"))
               {
                   UserdetailsFragment fr = new UserdetailsFragment();
                   if (fr != null) {
@@ -101,8 +101,8 @@ public class AttandanceManagementFragment extends Fragment {
 
                     //send data to next fragment
                       Bundle args = new Bundle();
-                      args.putString("current_user_id", employeeList.get(position).getId());
-                      args.putString("emp_name2", employeeList.get(position).getTitle());
+                      args.putString("current_user_id", employeeList.get(position).getemloyee_employee_id());
+                     // args.putString("emp_name2", employeeList.get(position).getTitle());
                       args.putString("emp_email2", employeeList.get(position).getEmail());
                       args.putString("emp_post2", employeeList.get(position).getGenre());
                       args.putString("emp_status2", employeeList.get(position).getStatus());
@@ -157,11 +157,11 @@ public class AttandanceManagementFragment extends Fragment {
                                 JSONObject obj = response.getJSONObject(i);
                                 employee = new Employee();
 
-                                employee.setTitle(obj.getString("title"));
+                              //  employee.setTitle(obj.getString("title"));
                                 employee.setThumbnailUrl(obj.getString("image"));
                                 employee.setEmail(obj.getString("rating"));
                                 employee.setStatus(obj.getString("releaseYear"));
-                                employee.setId(obj.getString("id"));
+                                employee.setemloyee_employee_id(obj.getString("id"));
 
                                 employee.setGenre(obj.getString("genre"));
                                /* // Genre is json array
@@ -217,7 +217,7 @@ public class AttandanceManagementFragment extends Fragment {
 
         //if(list.equals(position)) {
 
-            d_name.setText(employeeList.get(position).getTitle());
+           // d_name.setText(employeeList.get(position).getTitle());
             d_email.setText(employeeList.get(position).getEmail());
             d_post.setText(employeeList.get(position).getGenre());
             d_status.setText(employeeList.get(position).getStatus());
