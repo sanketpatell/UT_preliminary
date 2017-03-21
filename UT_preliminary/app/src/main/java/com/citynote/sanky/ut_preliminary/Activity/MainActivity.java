@@ -1,8 +1,11 @@
 package com.citynote.sanky.ut_preliminary.Activity;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ApplicationInfo;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -38,6 +41,8 @@ import com.citynote.sanky.ut_preliminary.CircleTransform;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.File;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -75,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG_PHOTOS = "photos";
     private static final String TAG_GADGETS = "gadgets";
     private static final String TAG_NOTIFICATIONS = "notifications";
-    private static final String TAG_SETTINGS = "settings";
+    private static final String TAG_EMPLOYEES = "employees";
 
     public static String CURRENT_TAG = TAG_ATTANDANCE;
 
@@ -88,21 +93,22 @@ public class MainActivity extends AppCompatActivity {
 
     SharedPreferences sharedpreferences;
     SharedPreferences.Editor spt;
-    String Employee_id="",Password="";
+    String Employee_id="",Password="",employee_name="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
 
-                 sharedpreferences = getSharedPreferences("MyPREFERENCES", 0);
+                 sharedpreferences = getSharedPreferences("uohmac", 0);
                  spt = sharedpreferences.edit();
 
-                Employee_id =sharedpreferences.getString("employee_id", "1");
-                Password=sharedpreferences.getString("password","1");
+                Employee_id =sharedpreferences.getString("employee_id", "");
+                Password=sharedpreferences.getString("password","");
+                employee_name = sharedpreferences.getString("employee_name","");
 
-        Log.d("employee_id","1   "+ Employee_id);
-        Log.d("password","2 "+ Password);
+        Log.d("employee_id_main","   "+ Employee_id);
+        Log.d("password_main"," "+ Password);
 
 
 
@@ -144,6 +150,7 @@ public class MainActivity extends AppCompatActivity {
 
         new Getattandance().execute();
 
+
     }
 
     /***
@@ -153,8 +160,13 @@ public class MainActivity extends AppCompatActivity {
      */
     private void loadNavHeader() {
         // name, website
-        txtName.setText("Sanket Patel");
+        txtName.setText(employee_name);
         txtWebsite.setText("www.uohmac.in");
+
+
+        Log.d("textname_employee", employee_name);
+
+
 
         // loading header background image
         Glide.with(this).load(urlNavHeaderBg)
@@ -246,8 +258,8 @@ public class MainActivity extends AppCompatActivity {
 
             case 4:
                 // settings fragment
-                EmployessFragment settingsFragment = new EmployessFragment();
-                return settingsFragment;
+                EmployessFragment employeesFragment = new EmployessFragment();
+                return employeesFragment;
            /* case 5:
                 // Attandance_management fragment
                 Attandance_management Attandance_management = new Attandance_management();
@@ -292,9 +304,9 @@ public class MainActivity extends AppCompatActivity {
                         navItemIndex = 3;
                         CURRENT_TAG = TAG_NOTIFICATIONS;
                         break;
-                    case R.id.nav_settings:
+                    case R.id.nav_employees:
                         navItemIndex = 4;
-                        CURRENT_TAG = TAG_SETTINGS;
+                        CURRENT_TAG = TAG_EMPLOYEES;
                         break;
 
                     case R.id.nav_about_us:
@@ -396,16 +408,56 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_logout) {
-            /*SharedPreferences sharedpreferences = getSharedPreferences(Login.MyPREFERENCES, Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedpreferences.edit();
+         /*   SharedPreferences preferences =getSharedPreferences("uohmac",Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = preferences.edit();
             editor.clear();
             editor.commit();*/
+            spt.clear();
+            spt.putString("logout", "logout");
+            spt.commit();
+            finish();
+
             Intent intent = new Intent(MainActivity.this,Login.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); // To clean up all activities
             startActivity(intent);
             Toast.makeText(getApplicationContext(), "You are successfully Logout!", Toast.LENGTH_LONG).show();
             return true;
         }
 
+
+        //main screen shar app lication
+
+        if (id == R.id.action_sharapp) {
+
+            // Get current ApplicationInfo to find .apk path
+            ApplicationInfo app = getApplicationContext().getApplicationInfo();
+            String filePath = app.sourceDir;
+
+            Intent intent = new Intent(Intent.ACTION_SEND);
+
+            // MIME of .apk is "application/vnd.android.package-archive".
+            // but Bluetooth does not accept this. Let's use "*/*" instead.
+            intent.setType("*/*");
+
+            // Only use Bluetooth to send .apk
+            intent.setPackage("com.android.bluetooth");
+
+            // Append file and send Intent
+            intent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(new File(filePath)));
+            startActivity(Intent.createChooser(intent, "Share app"));
+
+
+
+
+
+    // application link and text share
+           /* Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
+            sendIntent.putExtra(Intent.EXTRA_TEXT,
+                    "Hey check out my app at: https://play.google.com/store/apps/details?id=com.google.android.apps.plus");
+            sendIntent.setType("text/plain");
+            startActivity(sendIntent);*/
+        }
         // user is in notifications fragment
         // and selected 'Mark all as Read'
         if (id == R.id.action_mark_all_read) {

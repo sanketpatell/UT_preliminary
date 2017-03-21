@@ -97,6 +97,7 @@ public class UserdetailsFragment extends Fragment {
 TextView curr_emp_id,curr_emp_fname,curr_emp_lname,curr_emp_email,curr_emp_mobile,curr_emp_emg_mobile,curr_emp_dob,curr_emp_bg,curr_emp_jod,curr_emp_designation,curr_emp_work_exp,curr_emp_technical_skill;
 
 
+
     SharedPreferences sharedpreferences;
     SharedPreferences.Editor spt;
     String Employee_id="",Password="";
@@ -108,7 +109,7 @@ TextView curr_emp_id,curr_emp_fname,curr_emp_lname,curr_emp_email,curr_emp_mobil
         View UserdetailsFragmentView =  inflater.inflate(R.layout.fragment_userdetails, container, false);
 
 
-        sharedpreferences = getActivity().getSharedPreferences("MyPREFERENCES", 0);
+        sharedpreferences = getActivity().getSharedPreferences("uohmac", 0);
         spt = sharedpreferences.edit();
 
         Employee_id =sharedpreferences.getString("employee_id", null);
@@ -357,7 +358,7 @@ TextView curr_emp_id,curr_emp_fname,curr_emp_lname,curr_emp_email,curr_emp_mobil
                 email.setText(curr_email);
                 mobile.setText(curr_mobile);
 
-
+                spt.putString("employee_name", curr_first_name+"  "+curr_last_name);
                 //UrlImageViewHelper.setUrlDrawable(thumbNail, Image);
 
 

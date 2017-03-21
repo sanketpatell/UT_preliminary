@@ -15,10 +15,25 @@
         android:layout_marginTop="15dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp" >
+
+
+        <TextView
+            android:id="@+id/total_days"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total Days"
+            android:layout_gravity="center"
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom" >
+
+
+
 
             <TextView
                 android:id="@+id/tvfrom"
@@ -70,6 +85,7 @@
             android:typeface="serif"
             android:singleLine="false"
             android:gravity="top"
+            android:onClick="leve_reason"
             />
 
         <LinearLayout

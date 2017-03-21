@@ -321,7 +321,7 @@
     <color name="bg_main">#428bca</color>
 
     <color name="input_login">#222222</color>
-    <color name="input_login_hint">#999999</color>
+    <color name="input_login_hint">#fff</color>
     <color name="input_register">#ffffff</color>
     <color name="input_register_bg">#3b4148</color>
     <color name="input_register_hint">#5e6266</color>
@@ -356,5 +356,5 @@
 
 
     <color name="present_color">#5cb85c</color>
-
+    <color name="colorHint">#ffffff</color>
 </resources>

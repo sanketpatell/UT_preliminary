@@ -2,7 +2,7 @@
     <string name="app_name">UT_preliminary</string>
     <string name="leave_activity_name">Leave Request</string>
 
-    <string name="action_settings">Settings</string>
+    <string name="action_sharapp">SharApp</string>
     <string name="hello_world">Hello world!</string>
     //Login and Signup Activity
     <string name="hint_email">Email ID</string>
@@ -34,7 +34,7 @@
 
     <!-- Navigation Drawer menu labels -->
     <string name="nav_attandance">Attandance Management</string>
-    <string name="nav_leave">Photos</string>
+    <string name="nav_leave">Event Photos</string>
     <string name="nav_gadgets">Gadgets Requirements</string>
     <string name="nav_notifications">Notifications</string>
     <string name="nav_settings">Employess</string>
@@ -44,7 +44,7 @@
     <!-- Toolbar titles when navigation menu item is selected -->
     <string-array name="nav_item_activity_titles">
         <item>Attandance Management</item>
-        <item>Photos </item>
+        <item>Event Photos </item>
         <item>Gadgets Requirements</item>
         <item>Notifications</item>
         <item>Employess</item>

@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.citynote.sanky.ut_preliminary.Activity.MainActivity;
 import com.citynote.sanky.ut_preliminary.R;
@@ -31,13 +32,14 @@ import javax.net.ssl.HttpsURLConnection;
  */
 
 public class Login extends AppCompatActivity {
+
     EditText emp_id,pass;
     Button login,signup;
     String status,empl_id,pass_word,response,message,employee_id,password;
     JSONObject jsonObject;
 
     //shared preferance setting+ include sharedpreference pacakge by using "alt+enter"
-    public static final String MyPREFERENCES = "uohmac" ;
+
     public static final String Status = "status_key";
     public static final String Emp_id = "em_idkey";
     public static final String Pass = "passkey";
@@ -48,8 +50,9 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        sharedpreferences = getSharedPreferences("MyPREFERENCES", 0);
+        sharedpreferences = getSharedPreferences("uohmac", 0);
         spt = sharedpreferences.edit();
+
 
         emp_id = (EditText) findViewById(R.id.emp_id);
         pass = (EditText) findViewById(R.id.password);
@@ -63,7 +66,7 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(emp_id.getText().toString().trim().equals("")) {
-                    emp_id.setError("Write UserName");
+                    emp_id.setError("Write Employee ID");
                 }
                 else if(pass.getText().toString().trim().equals("")){
                     pass.setError("Password Required");
@@ -138,6 +141,7 @@ public class Login extends AppCompatActivity {
 
                     } else {
                         response = "Error ";
+
                     }
                 }
 
@@ -180,11 +184,19 @@ public class Login extends AppCompatActivity {
                     spt.putString("employee_id", employee_id);
                     spt.putString("password", password);
 
+                    Log.e("login_employee_id", employee_id);
+                    Log.e("login_password", password);
+
+
+
+
                     spt.commit();
 
                     startActivity(intent);
                     Log.e("status_preference", status);
                 }else{
+
+
                     Toast.makeText(Login.this,message,Toast.LENGTH_LONG).show();
                 }
 
@@ -193,6 +205,7 @@ public class Login extends AppCompatActivity {
             }
 
 
+            Toast.makeText(Login.this,message,Toast.LENGTH_LONG).show();
 
         }
 

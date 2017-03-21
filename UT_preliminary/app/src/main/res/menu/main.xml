@@ -9,8 +9,9 @@
 
 
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/action_sharapp"
         android:orderInCategory="100"
         app:showAsAction="never"
-        android:title="@string/action_settings"/>
+        android:title="@string/action_sharapp"
+        />
 </menu>

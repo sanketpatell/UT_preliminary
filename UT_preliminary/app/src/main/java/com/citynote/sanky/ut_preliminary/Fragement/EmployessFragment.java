@@ -87,7 +87,7 @@ public class EmployessFragment extends Fragment {
             View EmployessFragmentView = inflater.inflate(R.layout.fragment_attandance, container, false);
 
 
-            sharedpreferences = getActivity().getSharedPreferences("MyPREFERENCES", 0);
+            sharedpreferences = getActivity().getSharedPreferences("uohmac", 0);
             spt = sharedpreferences.edit();
 
             Employee_id =sharedpreferences.getString("employee_id", null);

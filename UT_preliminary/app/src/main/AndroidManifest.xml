@@ -58,8 +58,6 @@
         <activity
             android:name=".Activity.LeaveActivity"
             android:label="@string/leave_activity_name" />
-        <activity
-            android:name=".Photos.FullScreenActivity" />
 
         <activity
             android:name=".Splash.SplashActivity2"></activity>
